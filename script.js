@@ -37,35 +37,35 @@ function getIconMarkup(iconType, extraClass = '') {
     case 'whatsapp':
       return `
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="${finalClasses}">
-          <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
       `;
     case 'phone':
       return `
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="${finalClasses}">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
       `;
     case 'instagram':
       return `
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="${finalClasses}">
-          <rect width="20" height="20" x="2" y="2" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"></rect>
-          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"></path>
+          <rect width="20" height="20" x="2" y="2" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="1.5"></path>
           <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
         </svg>
       `;
     case 'messenger':
       return `
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="${finalClasses}">
-          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
       `;
     case 'tiktok':
       return `
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="${finalClasses}">
-          <path d="M9 18V5l12-2v13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-          <circle cx="6" cy="18" r="3" fill="none" stroke="currentColor" stroke-width="2"></circle>
-          <circle cx="18" cy="16" r="3" fill="none" stroke="currentColor" stroke-width="2"></circle>
+          <path d="M9 18V5l12-2v13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <circle cx="6" cy="18" r="3" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+          <circle cx="18" cy="16" r="3" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
         </svg>
       `;
     case 'snapchat':
@@ -79,14 +79,11 @@ function getIconMarkup(iconType, extraClass = '') {
   }
 }
 
-// ترتيب جديد: وسائل التواصل الاجتماعية ثم WhatsApp ثم الاتصال
 const orderedLinks = [
-  // وسائل التواصل الاجتماعي
   ...config.links.filter(link => ['Messenger', 'Snapchat', 'Instagram', 'TikTok'].includes(link.platform)),
-  // WhatsApp
   ...config.links.filter(link => link.platform === 'WhatsApp'),
-  // Call Now
-  ...config.links.filter(link => link.platform === 'Call Now')
+  ...config.links.filter(link => link.platform === 'Call Now'),
+  ...config.links.filter(link => !['Messenger', 'Snapchat', 'Instagram', 'TikTok', 'WhatsApp', 'Call Now'].includes(link.platform))
 ];
 
 orderedLinks.forEach((link, index) => {
