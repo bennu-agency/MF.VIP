@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   color-scheme: dark;
   font-family: 'Tajawal', sans-serif;
   --bg: #04050c;
@@ -8,6 +8,15 @@
   --muted: #c3c8d6;
   --gold: #ffd953;
   --gold-soft: rgba(255, 217, 83, 0.18);
+  --primary: #d4af37;
+  --primary-foreground: #0f1419;
+  --background: #0f1419;
+  --foreground: #f5f1e8;
+  --card: #1a2332;
+  --card-foreground: #f5f1e8;
+  --border: #2d3e52;
+  --muted-foreground: #c9a961;
+  --glow-gold: 0 0 20px rgba(212, 175, 55, 0.28);
   --whatsapp: #25d366;
   --instagram: linear-gradient(135deg, #feda75 0%, #fa7e1e 25%, #d62976 50%, #962fbf 75%, #4f5bd5 100%);
   --facebook: #1877f2;
@@ -23,10 +32,11 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: radial-gradient(circle at top left, rgba(255, 217, 83, 0.22), transparent 18%),
-              radial-gradient(circle at top right, rgba(255, 255, 255, 0.10), transparent 16%),
-              radial-gradient(circle at bottom left, rgba(37, 178, 255, 0.12), transparent 14%),
-              linear-gradient(180deg, #04050c 0%, #01030a 45%, #04050c 100%);
+  background: radial-gradient(circle at top left, rgba(212, 175, 55, 0.22), transparent 18%),
+              radial-gradient(circle at top right, rgba(255, 255, 255, 0.14), transparent 16%),
+              radial-gradient(circle at bottom left, rgba(37, 178, 255, 0.16), transparent 14%),
+              radial-gradient(circle at center, rgba(100, 50, 200, 0.12), transparent 35%),
+              linear-gradient(180deg, #0a0d1a 0%, #050709 45%, #0f1419 100%);
   color: var(--text);
   overflow-x: hidden;
   overflow-y: auto;
@@ -63,6 +73,32 @@ body.theme-light .hero-logo {
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.2), transparent 24%),
+    radial-gradient(circle at 80% 12%, rgba(255, 217, 83, 0.16), transparent 16%),
+    radial-gradient(circle at 50% 78%, rgba(90, 170, 255, 0.2), transparent 24%),
+    radial-gradient(circle at 30% 50%, rgba(150, 100, 255, 0.12), transparent 30%),
+    linear-gradient(135deg, rgba(6, 10, 18, 0.96), rgba(10, 16, 28, 0.8));
+}
+
+.background-effect::before,
+.background-effect::after {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.8) 0 1px, transparent 1.4px),
+    radial-gradient(circle, rgba(255,255,255,0.4) 0 1px, transparent 1.2px),
+    radial-gradient(circle, rgba(100,150,255,0.5) 0 0.5px, transparent 1px);
+  background-size: 220px 220px, 320px 320px, 480px 480px;
+  opacity: 0.22;
+  animation: starsDrift 30s linear infinite;
+}
+
+.background-effect::after {
+  opacity: 0.14;
+  animation-direction: reverse;
+  animation-duration: 42s;
 }
 
 .floating-icon {
@@ -90,16 +126,22 @@ body.theme-light .hero-logo {
   background: radial-gradient(circle, rgba(255,255,255,0.18), transparent 48%);
 }
 
-.icon-mp { top: 12%; left: 8%; background: rgba(37, 178, 85, 0.24); animation: driftA 16s ease-in-out infinite; }
+.icon-mp { top: 12%; left: 8%; background: rgba(37, 178, 85, 0.24); }
 .icon-instagram { top: 24%; right: 10%; background: rgba(255, 54, 141, 0.25); animation: driftB 13s ease-in-out infinite; }
-.icon-whatsapp { bottom: 18%; left: 14%; background: rgba(37, 211, 102, 0.25); animation: driftC 14s ease-in-out infinite; }
+.icon-whatsapp { bottom: 18%; left: 14%; background: rgba(37, 211, 102, 0.25); }
 .icon-tiktok { top: 42%; right: 18%; background: rgba(24, 26, 32, 0.88); animation: driftD 11s ease-in-out infinite; }
 .icon-snapchat { bottom: 24%; right: 12%; background: rgba(255, 252, 0, 0.95); color: #111; animation: driftE 15s ease-in-out infinite; }
-.icon-messenger { top: 55%; left: 10%; background: rgba(0, 132, 255, 0.25); animation: driftF 18s ease-in-out infinite; }
+.icon-messenger { top: 55%; left: 10%; background: rgba(0, 132, 255, 0.25); }
 .icon-youtube { top: 8%; right: 28%; background: rgba(255, 0, 0, 0.22); animation: driftG 12s ease-in-out infinite; }
-.icon-drive { bottom: 36%; left: 28%; background: rgba(52, 167, 83, 0.24); animation: driftH 13s ease-in-out infinite; }
+.icon-drive { bottom: 36%; left: 28%; background: rgba(52, 167, 83, 0.24); }
 .icon-instagram-alt { top: 70%; right: 18%; background: var(--instagram); animation: driftI 11s ease-in-out infinite; }
-.icon-messenger-alt { bottom: 8%; left: 46%; background: rgba(0, 132, 255, 0.26); animation: driftJ 10s ease-in-out infinite; }
+.icon-messenger-alt { bottom: 8%; left: 46%; background: rgba(0, 132, 255, 0.26); }
+
+.static-left {
+  animation: none !important;
+  transform: none !important;
+}
+
 .icon-vip {
   top: 28%; left: 44%;
   width: 60px;
@@ -162,13 +204,13 @@ body.theme-light .hero-logo {
 
 .hero-card {
   position: relative;
-  background: var(--panel);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(135deg, rgba(26, 35, 50, 0.82), rgba(15, 20, 25, 0.92));
+  border: 1px solid var(--border);
   border-radius: 36px;
   padding: 34px 24px 26px;
   text-align: center;
   overflow: hidden;
-  box-shadow: 0 28px 95px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 28px 95px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255,255,255,0.04);
   animation: floatCard 6s ease-in-out infinite;
 }
 
@@ -255,126 +297,149 @@ body.theme-light .hero-logo {
   margin-top: 24px;
 }
 
-.action-card {
-  display: grid;
-  grid-template-columns: 60px 1fr auto;
-  gap: 16px;
+.social-card {
+  display: flex;
   align-items: center;
+  gap: 1.2rem;
   padding: 18px 20px;
   border-radius: 24px;
-  background: rgba(255,255,255,0.04);
+  background: linear-gradient(135deg, rgba(26, 35, 50, 0.72), rgba(15, 20, 25, 0.82));
   border: 1px solid rgba(255, 255, 255, 0.1);
   text-decoration: none;
   color: var(--text);
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.22);
   transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+  flex-direction: row-reverse;
 }
 
-.action-card::before {
+.social-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(120deg, rgba(255, 217, 83, 0.18), rgba(255, 255, 255, 0.02), rgba(255, 217, 83, 0.28));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+  background: linear-gradient(135deg, rgba(255,255,255,0.06), transparent, transparent);
   opacity: 0;
   transition: opacity 0.25s ease;
 }
 
-.action-card:hover {
+.social-card:hover {
   transform: translateY(-3px) scale(1.01);
-  border-color: rgba(255, 217, 83, 0.35);
-  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.22);
-  background: rgba(255,255,255,0.12);
+  border-color: rgba(212, 175, 55, 0.48);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.24), var(--glow-gold);
+  background: linear-gradient(135deg, rgba(38, 52, 76, 0.72), rgba(21, 32, 51, 0.86));
 }
 
-.action-card:hover::before {
+.social-card:hover::before {
   opacity: 1;
 }
 
-.icon {
-  width: 60px;
-  height: 60px;
+.icon-circle {
+  width: 90px;
+  height: 90px;
   border-radius: 20px;
   display: grid;
   place-items: center;
   color: white;
   font-size: 1.25rem;
+  flex-shrink: 0;
+  box-shadow: 0 10px 18px -3px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(255,255,255,0.06) inset;
+  transition: transform 0.25s ease;
 }
 
-.icon.whatsapp { background: var(--whatsapp); }
-.icon.phone { background: linear-gradient(135deg, #3a3dff, #2ac4ff); }
-.icon.instagram { background: var(--instagram); }
-.icon.facebook { background: var(--facebook); }
-.icon.tiktok { background: #111; border: 1px solid rgba(255,255,255,0.16); }
-.icon.snapchat { background: rgba(255, 252, 0, 0.94); color: #111; }
-.icon.messenger { background: var(--messenger); }
-.icon.review { background: rgba(244, 196, 48, 0.95); color: #111; }
-.icon.drive { background: var(--drive); }
+.icon-circle svg,
+.floating-button svg {
+  width: 3.2rem;
+  height: 3.2rem;
+}
 
-.content h3 {
+.floating-button svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.icon-circle .icon-svg {
+  color: white;
+}
+
+.icon-circle .snapchat-icon,
+.floating-button .snapchat-icon {
+  color: #fffc00;
+  transform: scale(1.06);
+}
+
+.social-card:hover .icon-circle {
+  transform: scale(1.1);
+}
+
+.whatsapp-gradient { background: linear-gradient(135deg, #25D366, #128C7E); }
+.call-gradient { background: linear-gradient(135deg, #06b6d4, #2563eb); }
+.instagram-gradient { background: linear-gradient(135deg, #833AB4, #fd1d1d, #fcb045); }
+.facebook-gradient { background: linear-gradient(135deg, #1877F2, #0d5bc6); }
+.tiktok-gradient { background: linear-gradient(135deg, #000000, #ff0050, #00f2ea); }
+.call2-gradient { background: linear-gradient(135deg, #f97316, #ea580c); }
+.location-gradient { background: linear-gradient(135deg, #4285F4, #1a73e8); }
+
+.card-content {
+  flex: 1;
+  min-width: 0;
+  text-align: right;
+}
+
+.platform-name {
   margin: 0;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 700;
+  color: var(--foreground);
 }
 
-.content p {
+.platform-subtitle {
   margin: 6px 0 0;
-  color: var(--muted);
+  color: var(--muted-foreground);
   font-size: 0.95rem;
 }
 
-.arrow {
-  font-size: 1.7rem;
-  color: #ffe8a6;
-  animation: arrowMove 1.2s ease-in-out infinite, arrowIdleGlow 1.8s ease-in-out infinite;
-  transition: color 0.25s ease, transform 0.25s ease, filter 0.25s ease;
-  position: relative;
-  display: inline-block;
-  filter: drop-shadow(0 0 6px rgba(255, 217, 83, 0.28));
-}
-
-.arrow::before {
-  content: '';
-  position: absolute;
-  inset: -4px -7px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 217, 83, 0.3);
-  opacity: 0.7;
-  transform: scale(0.95);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-.action-card:hover .arrow {
+.arrow-icon {
   color: #ffd953;
-  transform: translateX(4px) scale(1.18);
-  filter: drop-shadow(0 0 10px rgba(255, 217, 83, 0.5));
-  animation: arrowMove 0.8s ease-in-out infinite, arrowPulse 1s ease-in-out infinite;
+  font-size: 2rem;
+  margin-left: auto;
+  margin-right: 0;
+  transition: transform 0.25s ease, color 0.25s ease, text-shadow 0.25s ease;
+  text-shadow: 0 0 8px rgba(255, 217, 83, 0.4);
+  animation: arrowIdleGlow 2s ease-in-out infinite;
 }
 
-.action-card:hover .arrow::before {
-  opacity: 1;
-  transform: scale(1);
+.social-card:hover .arrow-icon {
+  transform: translateX(-6px);
+  color: #ffeb3b;
+  text-shadow: 0 0 16px rgba(255, 217, 83, 0.8), 0 0 24px rgba(255, 217, 83, 0.5);
 }
 
 .floating-buttons {
   position: fixed;
   bottom: 20px;
-  left: 20px;
+  right: 20px;
   z-index: 5;
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
+@media (max-width: 768px) {
+  .floating-buttons {
+    right: 14px;
+    bottom: 14px;
+  }
+}
+
 .floating-button {
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
+  width: 68px;
+  height: 68px;
+  border-radius: 20px;
   display: grid;
   place-items: center;
   text-decoration: none;
@@ -384,9 +449,12 @@ body.theme-light .hero-logo {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.floating-button:hover { transform: translateY(-3px) scale(1.05); }
+.floating-button:hover { 
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 22px 55px rgba(0,0,0,0.35);
+}
 
-.floating-button.whatsapp { background: var(--whatsapp); }
+.floating-button.whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); }
 .floating-button.phone { background: linear-gradient(135deg, #3a3dff, #2ac4ff); }
 
 .site-footer {
@@ -408,6 +476,11 @@ body.theme-light .hero-logo {
   pointer-events: none;
   will-change: transform, opacity;
   transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+@keyframes starsDrift {
+  from { transform: translate3d(0, 0, 0) rotate(0deg); }
+  to { transform: translate3d(-8%, -10%, 0) rotate(25deg); }
 }
 
 @keyframes driftA {
@@ -508,14 +581,19 @@ body.theme-light .hero-logo {
   50% { transform: translateX(5px); }
 }
 
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
 @keyframes arrowPulse {
   0%, 100% { box-shadow: 0 0 0 rgba(255, 217, 83, 0); }
   50% { box-shadow: 0 0 12px rgba(255, 217, 83, 0.35); }
 }
 
 @keyframes arrowIdleGlow {
-  0%, 100% { text-shadow: 0 0 0 rgba(255, 217, 83, 0); filter: brightness(1); }
-  50% { text-shadow: 0 0 10px rgba(255, 217, 83, 0.25); filter: brightness(1.15); }
+  0%, 100% { text-shadow: 0 0 8px rgba(255, 217, 83, 0.4); filter: brightness(1); }
+  50% { text-shadow: 0 0 16px rgba(255, 217, 83, 0.7); filter: brightness(1.2); }
 }
 
 body.scroll-ended .site-footer {
@@ -531,6 +609,10 @@ body.scroll-ended .site-footer {
   .action-card { grid-template-columns: 50px 1fr auto; padding: 16px 16px; }
   .icon { width: 50px; height: 50px; border-radius: 18px; font-size: 1.1rem; }
   .floating-buttons { bottom: 14px; right: 14px; }
+  .floating-button {
+    width: 60px;
+    height: 60px;
+  }
   .floating-icon {
     width: 44px;
     height: 44px;
@@ -543,4 +625,15 @@ body.scroll-ended .site-footer {
   .icon-tiktok { top: 40%; right: 8%; animation-duration: 7s; }
   .icon-snapchat { bottom: 22%; right: 6%; animation-duration: 8s; }
   .icon-messenger { top: 54%; left: 5%; animation-duration: 9s; }
+  .social-card {
+    gap: 1rem;
+  }
+  .icon-circle {
+    width: 70px;
+    height: 70px;
+  }
+  .icon-circle svg {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
 }
